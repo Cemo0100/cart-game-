@@ -1,76 +1,62 @@
-const cards = document.querySelectorAll('.memory-card');
-
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
-let score = 0;
-
-function flipCard() {
-    if (lockBoard || this == firstCard) return;
-
-    this.classList.add('flip');
-
-    if (!hasFlippedCard) {
-        // First click
-        hasFlippedCard = true;
-        firstCard = this;
-
-        return;
-    }
-
-    hasFlippedCard = false;
-    secondCard = this;
-
-    // Check for cards match
-    checkForMatch();
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-function checkForMatch() {
-    let isMatch = firstCard.dataset.framework == secondCard.dataset.framework;
-
-    isMatch ? disableCards() : unFlipCards();
+h1 {
+    text-align: center;
+    margin: 5px auto;
+    font-family: cursive;
+    color: greenyellow;
 }
 
-function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-    score += 1;
-
-    resetBoard();
+body {
+    height: 100vh;
+    background-image: linear-gradient(#0056d6, #0091e3, #00bac8, #9dd9be, #f1f6e5);
 }
 
-function unFlipCards() {
-    lockBoard = true;
-    setTimeout(() => {
-        firstCard.classList.remove('flip');
-        secondCard.classList.remove('flip');
-
-        resetBoard();
-    }, 1500);
+.card-game {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid lime;
+    perspective: 1000px;
 }
 
-function resetBoard() {
-    hasFlippedCard,
-    lockBoard = false,
-    false;
-    firstCard,
-    secondCard = null,
-    null;
-
-    setTimeout(() => {
-        if (score == 8) {
-            alert("Congratulations you matched all pokemons!");
-        }
-    }, 1500);
+.memory-card {
+    width: 25%;
+    height: 25%;
+    position: relative;
+    border: 2px solid aqua;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
 }
 
-// Shuffling cards through Immedialtely Invoked Function
-(function shuffle() {
-    cards.forEach(card => {
-        let randomPos = Math.floor(Math.random() * 16);
-        card.style.order = randomPos;
-    });
-})();
+.memory-card:active {
+    transform: scale(0.95);
+    transition: transform .2s;
+}
 
-// Adding eventListener to all cards
-cards.forEach(card => card.addEventListener('click', flipCard));
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.front,
+.back {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: rgb(69, 69, 247);
+    backface-visibility: hidden;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
