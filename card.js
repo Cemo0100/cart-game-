@@ -1,29 +1,30 @@
-const cards = document.querySelectorAll('.memory-card');
+document.addEventListener('DOMContentLoaded', () => {
 
+var cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-let score = 0;
+let score = 0; // Variabele om de score bij te houden
 
 function flipCard() {
-    if (lockBoard || this == firstCard) return;
 
-    this.classList.add('flip');
+        if (lockBoard || this === firstCard) return; // Voorkom dat er op dezelfde kaart geklikt wordt
 
-    if (!hasFlippedCard) {
-        // First click
-        hasFlippedCard = true;
-        firstCard = this;
+        this.classList.add('flip');
 
-        return;
+
+        if (!firstCard) {
+            firstCard = this;
+            return;
+        }
+
+        secondCard = this;
+
+        checkForMatch(); // Roep de checkForMatch fucntie aan nadat beide kaarten zijn omgedraaid
+
     }
 
-    hasFlippedCard = false;
-    secondCard = this;
-
-    // Check for cards match
-    checkForMatch();
-}
+    cards.forEach(card => card.addEventListener('click', flipCard));
 
 function checkForMatch() {
     let isMatch = firstCard.dataset.framework == secondCard.dataset.framework;
@@ -31,11 +32,23 @@ function checkForMatch() {
     isMatch ? disableCards() : unFlipCards();
 }
 
+function updateScore() {
+    document.getElementById('score-board').textContent = `Score: ${score}`;
+    
+         if (score === 80) {
+            setTimeout(() => {
+                alert("Goed gedaan, je hebt alle pokémons gevonden!");
+            }, 500);
+        }
+    }
+    
 function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-    score += 1;
-
+   
+    score += 10; // Verhoog de score met 10 bij een match
+    updateScore();
+    
     resetBoard();
 }
 
@@ -44,24 +57,16 @@ function unFlipCards() {
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
+       
 
         resetBoard();
     }, 1500);
 }
 
 function resetBoard() {
-    hasFlippedCard,
-    lockBoard = false,
-    false;
-    firstCard,
-    secondCard = null,
-    null;
-
-    setTimeout(() => {
-        if (score == 8) {
-            alert("Congratulations you matched all pokemons!");
-        }
-    }, 1500);
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
 }
 
 // Shuffling cards through Immedialtely Invoked Function
@@ -74,3 +79,5 @@ function resetBoard() {
 
 // Adding eventListener to all cards
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+});
