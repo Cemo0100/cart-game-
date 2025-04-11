@@ -2,91 +2,78 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Pokémon Wereld</title>
+  <title>Pokémon Avontuur</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f8ff;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #ffcb05;
-      color: #2a75bb;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-image: url('https://wallpaperaccess.com/full/1567673.jpg'); /* achtergrond met Pokémon */
+      background-size: cover;
+      background-position: center;
+      color: white;
       text-align: center;
     }
+
     nav {
-      background-color: #2a75bb;
+      background-color: rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
-      padding: 10px 0;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 20px;
+      font-size: 18px;
       font-weight: bold;
+      transition: color 0.3s;
     }
+
     nav a:hover {
-      text-decoration: underline;
+      color: #ffcb05;
     }
-    .intro {
-      padding: 20px;
-      text-align: center;
+
+    .content {
+      padding: 50px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      margin: 50px auto;
+      max-width: 600px;
+      border-radius: 15px;
     }
-    .pokemon-grid {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 20px;
-    }
-    .pokemon-card {
-      background-color: white;
-      border: 2px solid #2a75bb;
+
+    .play-button {
+      display: inline-block;
+      background-color: #ffcb05;
+      color: #2a75bb;
+      padding: 12px 25px;
+      margin-top: 20px;
+      font-size: 20px;
       border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      width: 150px;
+      text-decoration: none;
+      transition: background-color 0.3s;
     }
-    .pokemon-card img {
-      width: 100px;
-      height: auto;
+
+    .play-button:hover {
+      background-color: #f5b700;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welkom in de Pokémon Wereld!</h1>
-  </header>
-
   <nav>
     <a href="#">Home</a>
-    <a href="#">Pokédex</a>
-    <a href="#">Trainers</a>
     <a href="#">Contact</a>
+    <a href="#">Speel Nu</a>
   </nav>
 
-  <section class="intro">
-    <h2>Ontdek, vang en train Pokémon!</h2>
-    <p>Sluit je aan bij miljoenen trainers en begin je avontuur vandaag nog.</p>
-  </section>
-
-  <section class="pokemon-grid">
-    <div class="pokemon-card">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
-      <h3>Pikachu</h3>
-    </div>
-    <div class="pokemon-card">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
-      <h3>Bulbasaur</h3>
-    </div>
-    <div class="pokemon-card">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
-      <h3>Charmander</h3>
-    </div>
-  </section>
+  <div class="content">
+    <h1>Welkom in de Wereld van Pokémon!</h1>
+    <p>Vang ze allemaal en word een Pokémonmeester!</p>
+    <a class="play-button" href="#">▶ Speel Nu</a>
+  </div>
 
 </body>
 </html>
