@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon Wereld</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ffcb05;
+      color: #2a75bb;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #2a75bb;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .intro {
+      padding: 20px;
+      text-align: center;
+    }
+    .pokemon-grid {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+    }
+    .pokemon-card {
+      background-color: white;
+      border: 2px solid #2a75bb;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      width: 150px;
+    }
+    .pokemon-card img {
+      width: 100px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welkom in de Pokémon Wereld!</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Pokédex</a>
+    <a href="#">Trainers</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="intro">
+    <h2>Ontdek, vang en train Pokémon!</h2>
+    <p>Sluit je aan bij miljoenen trainers en begin je avontuur vandaag nog.</p>
+  </section>
+
+  <section class="pokemon-grid">
+    <div class="pokemon-card">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+      <h3>Pikachu</h3>
+    </div>
+    <div class="pokemon-card">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
+      <h3>Bulbasaur</h3>
+    </div>
+    <div class="pokemon-card">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
+      <h3>Charmander</h3>
+    </div>
+  </section>
+
+</body>
+</html>
