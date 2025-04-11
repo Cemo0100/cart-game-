@@ -8,41 +8,46 @@ let score = 0; // Variabele om de score bij te houden
 
 class MemoryCard{
     image;
-    isFlipped = false;
+    points;
 
-    constructor(imgurl){
+    constructor(imgurl, points){
         this.image = imgurl;
+        this.points = points;
+    }
+
+    makeCardHTML(){
+
+        for (let index = 1; index <= 2; index++) {
+            let element = document.createElement("div");
+            element.className = "memory-card";
+            element.setAttribute("data-framework", this.image);
+            element.setAttribute("points", this.points);
+    
+            let front = document.createElement("img");
+            front.className = "front";
+            front.src = "Ultraball.png";
+    
+            let back = document.createElement("img");
+            back.className = "back";
+            back.src = this.image;
+    
+            element.appendChild(back);
+            element.appendChild(front);
+    
+            document.getElementById("card-game").appendChild(
+                element
+            );
+        }
     }
 }
 
 let memcards = [
-    new MemoryCard("snorlax.png"),
-    new MemoryCard("psyduck.png")
+    new MemoryCard("snorlax.png", 20),
+    new MemoryCard("pikachu.png", 10),
+    new MemoryCard("psyduck.png", 5)
 ]
 
-function makeCardHTML(memCard){
 
-    for (let index = 1; index <= 2; index++) {
-        let element = document.createElement("div");
-        element.className = "memory-card";
-        element.setAttribute("data-framework", memCard.image);
-
-        let front = document.createElement("img");
-        front.className = "front";
-        front.src = "Ultraball.png";
-
-        let back = document.createElement("img");
-        back.className = "back";
-        back.src = memCard.image;
-
-        element.appendChild(back);
-        element.appendChild(front);
-
-        document.getElementById("card-game").appendChild(
-            element
-        );
-    }
-}
 
 
 function flipCard() {
@@ -87,8 +92,8 @@ function updateScore() {
 function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-   
-    score += 10; // Verhoog de score met 10 bij een match
+    
+    score += parseInt(firstCard.getAttribute("points")); // Verhoog de score met 10 bij een match
     updateScore();
     
     resetBoard();
@@ -112,7 +117,7 @@ function resetBoard() {
 }
 
 
-memcards.forEach(makeCardHTML);
+memcards.forEach(x => x.makeCardHTML());
 
 
 let cards = document.querySelectorAll('.memory-card');
