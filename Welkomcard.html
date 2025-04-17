@@ -1,29 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-</head>
-<style>
-body {
-  background-image: url("pikachuachtergrond.jpg");
-  
-}
+  <meta charset="UTF-8">
+  <title>Welkom Trainer!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      background-image: url('backgroundpokemon.png'); 
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
 
-</style>
+      color: white;
+    }
+
+    nav {
+      background-color: #FFCB05;
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border-bottom: 4px solid #3B4CCA;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3B4CCA;
+      font-size: 12px;
+    }
+
+    nav a:hover {
+      color: red;
+    }
+
+    .content {
+      padding: 60px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 20px;
+      text-shadow: 2px 2px #3B4CCA;
+      color: #FFCB05;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 2;
+      color: white;
+    }
+
+    .btn {
+      background-color: #3B4CCA;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: red;
+    }
+  </style>
+</head>
 <body>
-    <h1> Speel het kaarten spel met vrienden 
-      en ondek elke kaarts eigenschap</h1>
-    
-    <h2>Ontdek onze uniek kaartenspel</h2>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-    
-    <a href="card.html">Klik hier en speel mee!</a>
+
+  <nav>
+  </nav>
+
+  <div class="content">
+    <h1>Welkom, Trainer!</h1>
+    <p>Je bent succesvol ingelogd in het Pokémon Trainer Portaal. Hier kun je reis voortzetten.</p>
+    <button class="btn">Pokemon Card Game</button>
+  </div>
+
 </body>
 </html>
