@@ -1,92 +1,135 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pokémon Login</title>
+  <meta charset="UTF-8">
+  <title>Pokémon Trainer Login</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Verdana', sans-serif;
-      background: url('https://assets.pokemon.com/assets/cms2/img/misc/virtual-backgrounds/masters/explore-pikachu.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-image: url('pokemonachtergrond.png');
+      background-repeat: repeat;
+      background-size: 120px;
+      font-family: 'Press Start 2P', cursive;
+      color: white;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
+      margin: 0;
     }
 
-    .login-container {
-      background-color: rgba(255, 255, 255, 0.9);
+    .container {
+      background: rgba(0, 0, 0, 0.8);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 0 20px #fdd835;
       text-align: center;
-      max-width: 350px;
-      width: 100%;
+      width: 340px;
+      box-shadow: 0 0 20px yellow;
+      border: 2px solid #FFCB05;
     }
 
-    .login-container h1 {
+    h1 {
+      color: #FFCB05;
+      text-shadow: 2px 2px #3B4CCA;
       margin-bottom: 20px;
-      color: #e53935;
     }
 
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 12px;
+    input {
+      width: 90%;
+      padding: 10px;
       margin: 10px 0;
-      border: 2px solid #fbc02d;
+      border: 2px solid #3B4CCA;
       border-radius: 10px;
-      font-size: 16px;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      background-color: #f8f8f8;
+      color: #000;
     }
 
-    .login-btn {
-      background: radial-gradient(circle at center, #f44336 50%, #000 51%);
-      color: white;
+    button {
+      background-color: #FFCB05;
+      color: #3B4CCA;
+      padding: 10px 20px;
       border: none;
-      padding: 12px 24px;
-      font-size: 18px;
-      border-radius: 50%;
+      font-family: 'Press Start 2P', cursive;
+      border-radius: 10px;
       cursor: pointer;
-      margin-top: 15px;
-    }
-
-    .login-btn:hover {
-      transform: scale(1.1);
-      transition: 0.2s;
-    }
-
-    .error {
-      color: red;
       margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .toggle {
+      margin-top: 20px;
+      font-size: 10px;
+      cursor: pointer;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h1>Pokémon Login</h1>
-    <input type="text" id="username" placeholder="Trainernaam" />
-    <input type="password" id="password" placeholder="Wachtwoord" />
-    <br />
-    <button class="login-btn" onclick="login()">⚪</button>
-    <div id="error" class="error"></div>
+
+  <div class="container">
+    <h1>Trainer Login</h1>
+
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Gebruikersnaam" required><br>
+      <input type="password" id="password" placeholder="Wachtwoord" required><br>
+      <button type="submit">Inloggen</button>
+    </form>
+
+    <form id="registerForm" style="display: none;">
+      <input type="text" id="newUsername" placeholder="Nieuwe gebruikersnaam" required><br>
+      <input type="password" id="newPassword" placeholder="Nieuw wachtwoord" required><br>
+      <button type="submit">Account maken</button>
+    </form>
+
+    <div class="toggle" onclick="toggleForms()">Nog geen account? Registreer hier!</div>
   </div>
 
   <script>
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
-      const errorDiv = document.getElementById('error');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const toggle = document.querySelector('.toggle');
 
-      if (user === 'Ash' && pass === 'pikachu') {
-        alert('Welkom terug, Trainer ' + user + '!');
-        errorDiv.textContent = '';
+    let users = {};
+
+    function toggleForms() {
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        toggle.textContent = "Nog geen account? Registreer hier!";
       } else {
-        errorDiv.textContent = 'Oeps! Verkeerde trainergegevens.';
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        toggle.textContent = "Terug naar login";
       }
     }
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('newUsername').value;
+      const password = document.getElementById('newPassword').value;
+      if (users[username]) {
+        alert('Gebruikersnaam bestaat al!');
+      } else {
+        users[username] = password;
+        alert('Account aangemaakt!');
+        toggleForms();
+      }
+    });
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (users[username] === password) {
+        alert('Welkom, Trainer ' + username + '!');
+      } else {
+        alert('Ongeldige inloggegevens!');
+      }
+    });
   </script>
 </body>
 </html>
